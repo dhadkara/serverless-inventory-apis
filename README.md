@@ -1,11 +1,13 @@
-# How to host Swagger API documentation with GitHub Pages
-[<img alt="The blog of Peter Evans: How to Host Swagger Documentation With Github Pages" title="View blog post" src="https://peterevans.dev/img/blog-published-badge.svg">](https://peterevans.dev/posts/how-to-host-swagger-docs-with-github-pages/)
+# Host Swagger API documentation with GitHub Pages for Serverless Inventory APIs
 
 This repository is a template for using the [Swagger UI](https://github.com/swagger-api/swagger-ui) to dynamically generate beautiful documentation for your API and host it for free with GitHub Pages.
 
 The template will periodically auto-update the Swagger UI dependency and create a pull request. See the [GitHub Actions workflow here](.github/workflows/update-swagger.yml).
 
-The example API specification used by this repository can be seen hosted at [https://peter-evans.github.io/swagger-github-pages](https://peter-evans.github.io/swagger-github-pages/).
+The example API specification used by this repository can be seen hosted at [https://dhadkara.github.io/serverless-inventory-apis/](https://peter-evans.github.io/swagger-github-pages/).
+
+## Swagger Editor
+https://editor.swagger.io/
 
 ## Steps to use this template
 
