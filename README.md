@@ -1,10 +1,13 @@
-# Host Swagger API documentation with GitHub Pages for Serverless Inventory APIs
+# Serverless Inventory API documentation
+
+The example API specification used by this repository can be seen hosted at [api_path](https://dhadkara.github.io/serverless-inventory-apis/).
+
+
+## Swagger API documentation with GitHub Pages for Serverless Inventory APIs
 
 This repository is a template for using the [Swagger UI](https://github.com/swagger-api/swagger-ui) to dynamically generate beautiful documentation for your API and host it for free with GitHub Pages.
 
 The template will periodically auto-update the Swagger UI dependency and create a pull request. See the [GitHub Actions workflow here](.github/workflows/update-swagger.yml).
-
-The example API specification used by this repository can be seen hosted at [https://dhadkara.github.io/serverless-inventory-apis/](https://peter-evans.github.io/swagger-github-pages/).
 
 ## Swagger Editor
 https://editor.swagger.io/

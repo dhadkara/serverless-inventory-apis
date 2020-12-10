@@ -16,8 +16,48 @@ servers:
 paths:
 
   /v1/atp:
+    post:
+      summary: Post available to promise inventory 
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AtpRequest'
+      responses:
+        '200':
+          description: Successful
     get:
       summary: Get available to promise inventory 
+      parameters:
+        - in: query
+          name: skuId
+          required: true
+          schema:
+            type: string
+          description: The name identified as inventory Sku
+        - in: query
+          name: site
+          schema:
+            type: string
+          description: The location for inventory e.g. DC or Store
+
+  /v1/reserve:
+    post:
+      summary: Post reservations 
+      requestBody:
+        description: Optional description in *Markdown*
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReserveRequest'
+      responses:
+        '200':
+          description: Successful
+    get:
+      summary: Get reservations
       parameters:
         - in: query
           name: skuId
@@ -37,27 +77,28 @@ paths:
           content:
             application/json:
               schema: 
-                $ref: '#/components/schemas/AtpResponse'
+                $ref: '#/components/schemas/ReserveResponse'
 
 
 components:
   schemas:
-    # AtpRequest:
-    #   properties: 
-    #     atp: 
-    #       type: array
-    #       items:
-    #         -
-    #         type: object
-    #           properties: 
-    #             skuId: 
-    #                 type: string
-    #             site: 
-    #               type: string
-    #             qty: 
-    #               type: integer
-    #             promiseDate: 
-    #               type: string
+    AtpRequest:
+      type: object
+      properties:
+        atp: 
+          type: array
+          items:
+            type: object
+            properties:
+              skuId:
+                type: string
+              site:
+                type: string
+              qty:
+                type: number
+              promiseDate:
+                type: string
+                format: date-time
 
     AtpResponse:
         type: array
@@ -76,6 +117,43 @@ components:
             updatedAt:
               type: string
               format: date-time
-   
-      
-    
+
+    ReserveRequest:
+      type: object
+      properties:
+        reservations: 
+          type: array
+          items:
+            type: object
+            properties:
+              skuId:
+                type: string
+              site:
+                type: string
+              qty:
+                type: number
+              expiresIn:
+                type: number
+                
+    ReserveResponse:
+        type: array
+        items: 
+          type: object
+          properties:
+            skuId:
+              type: string
+            site:
+              type: string
+            reservationId:
+              type: string
+            qty:
+              type: number
+            expiresAt:
+              type: string
+              format: date-time
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
