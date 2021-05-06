@@ -54,7 +54,7 @@ paths:
     post:
       summary: Post reservations 
       requestBody:
-        description: Optional description in *Markdown*
+        description: Creates reservation against available inventory to promise
         required: true
         content:
           application/json:
@@ -67,16 +67,26 @@ paths:
       summary: Get reservations
       parameters:
         - in: query
-          name: skuId
-          required: true
+          name: reservationId
           schema:
             type: string
-          description: The name identified as inventory Sku
+          description: > 
+            The name identified as inventory reservation identifier. 
+            The reservationId can be pass alone to obtain all the reservations under that reservationId.
+        - in: query
+          name: skuId
+          schema:
+            type: string
+          description: > 
+            The name identified as inventory Sku identifier. 
+            The skuId must be used together with `site`.
         - in: query
           name: site
           schema:
             type: string
-          description: The location for inventory e.g. DC or Store
+          description: >
+            The location for inventory e.g. DC or Store.
+            The site must be used together with `skuId`.
        
       responses:
         '200':    # status code
@@ -85,7 +95,19 @@ paths:
             application/json:
               schema: 
                 $ref: '#/components/schemas/ReserveResponse'
-
+    delete:
+      summary: Delete reservation
+      parameters:
+        - in: query
+          name: reservationId
+          required: true
+          schema:
+            type: string
+          description: > 
+            The name identified as inventory reservation identifier. 
+      responses:
+        '200':
+          description: Successful
 
 components:
   schemas:
@@ -108,22 +130,22 @@ components:
                 format: date-time
 
     AtpResponse:
-        type: array
-        items: 
-          type: object
-          properties:
-            skuId:
-              type: string
-            site:
-              type: string
-            qty:
-              type: number
-            createdAt:
-              type: string
-              format: date-time
-            updatedAt:
-              type: string
-              format: date-time
+      type: array
+      items: 
+        type: object
+        properties:
+          skuId:
+            type: string
+          site:
+            type: string
+          qty:
+            type: number
+          createdAt:
+            type: string
+            format: date-time
+          updatedAt:
+            type: string
+            format: date-time
 
     ReserveRequest:
       type: object
@@ -143,24 +165,24 @@ components:
                 type: number
                 
     ReserveResponse:
-        type: array
-        items: 
-          type: object
-          properties:
-            skuId:
-              type: string
-            site:
-              type: string
-            reservationId:
-              type: string
-            qty:
-              type: number
-            expiresAt:
-              type: string
-              format: date-time
-            createdAt:
-              type: string
-              format: date-time
-            updatedAt:
-              type: string
-              format: date-time
+      type: array
+      items: 
+        type: object
+        properties:
+          skuId:
+            type: string
+          site:
+            type: string
+          reservationId:
+            type: string
+          qty:
+            type: number
+          expiresAt:
+            type: string
+            format: date-time
+          createdAt:
+            type: string
+            format: date-time
+          updatedAt:
+            type: string
+            format: date-time

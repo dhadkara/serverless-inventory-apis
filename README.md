@@ -1,6 +1,6 @@
 # Serverless Inventory API documentation
 
-The example API specification used by this repository can be seen hosted at [api_path](https://dhadkara.github.io/serverless-inventory-apis/).
+The example API specification used by this repository can be seen hosted at [api_path](https://dhadkara.github.io/serverless-inventory-apis/)
 
 
 ## Swagger API documentation with GitHub Pages for Serverless Inventory APIs
