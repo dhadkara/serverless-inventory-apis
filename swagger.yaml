@@ -6,8 +6,8 @@ info:
   version: '1.0.0' #api version
 
 
-tags:
-  - name: inventory
+# tags:
+#   - name: inventory
 
 servers:
   - url: http://localhost:3000
@@ -27,7 +27,7 @@ paths:
               $ref: '#/components/schemas/AtpRequest'
       responses:
         '200':
-          description: Successful
+          description: Atp updated successfully
     get:
       summary: Get available to promise inventory 
       parameters:
@@ -116,6 +116,7 @@ components:
       properties:
         atp: 
           type: array
+          description: list of atp objects with limit to 25 objects at a time
           items:
             type: object
             properties:
