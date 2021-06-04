@@ -28,6 +28,10 @@ paths:
       responses:
         '200':
           description: Atp updated successfully
+        '400':
+          description: [Please update max 25 atp objects at a time, Request cannot include multiple operations on one item]
+        '500':
+          description: Internal Server Error
     get:
       summary: Get available to promise inventory 
       parameters:
@@ -44,7 +48,7 @@ paths:
           description: The location for inventory e.g. DC or Store
       responses:
         '200':    # status code
-          description: A JSON array of user names
+          description: A JSON array of object for onhand and future atp
           content:
             application/json:
               schema: 
@@ -54,7 +58,7 @@ paths:
     post:
       summary: Post reservations 
       requestBody:
-        description: Creates reservation against available inventory to promise
+        description: Creates reservation against available inventory to promise 
         required: true
         content:
           application/json:
@@ -62,7 +66,11 @@ paths:
               $ref: '#/components/schemas/ReserveRequest'
       responses:
         '200':
-          description: Successful
+          description: A JSON array of objects for reservations
+          content:
+            application/json:
+              schema: 
+                $ref: '#/components/schemas/ReserveResponse'
     get:
       summary: Get reservations
       parameters:
@@ -90,7 +98,7 @@ paths:
        
       responses:
         '200':    # status code
-          description: A JSON array of user names
+          description: A JSON array of objects for reservations
           content:
             application/json:
               schema: 
@@ -107,7 +115,7 @@ paths:
             The name identified as inventory reservation identifier. 
       responses:
         '200':
-          description: Successful
+          description: Successful Reservation Deletion
 
 components:
   schemas:
@@ -153,6 +161,7 @@ components:
       properties:
         reservations: 
           type: array
+          description: list of reservation objects with limit to 10 objects at a time
           items:
             type: object
             properties:
