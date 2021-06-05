@@ -29,7 +29,15 @@ paths:
         '200':
           description: Atp updated successfully
         '400':
-          description: [Please update max 25 atp objects at a time, Request cannot include multiple operations on one item]
+          description:
+          content:
+            application/json:
+              schema:
+                oneOf: 
+                  - type: string
+                    example: Please update max 25 atp objects at a time
+                  - type: string
+                    example: Request cannot include multiple operations on one item
         '500':
           description: Internal Server Error
     get:
